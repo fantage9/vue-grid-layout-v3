@@ -183,6 +183,9 @@ provide('gridLayout', { props, state });
 defineExpose({
   emitter,
   placeholderRef,
+  dragEvent,
+  state,
+  props,
 });
 
 // provide(eventBus, null)
@@ -391,8 +394,9 @@ function containerHeight() {
 
 // TODO
 function dragEvent([eventName, id, x, y, h, w] = []) {
-  // console.log(eventName + " id=" + id + ", x=" + x + ", y=" + y);
+  // console.log('dragEvent init', `${eventName} id=${id}, x=${x}, y=${y}`);
   let l = getLayoutItem(props.layout, id);
+  // console.log('dragEvent getLayoutItem', l);
   // GetLayoutItem sometimes returns null object
   if (l === undefined || l === null) {
     l = { x: 0, y: 0 };
@@ -424,7 +428,9 @@ function dragEvent([eventName, id, x, y, h, w] = []) {
 
   // Move the element to the dragged location.
   // props.layout = moveElement(props.layout, l, x, y, true, props.preventCollision);
+  // console.log('dragevent before moveElement', props.layout);
   const newLayout = moveElement(props.layout, l, x, y, true, props.preventCollision);
+  // console.log('dragevent after moveElement', newLayout);
   emit('update:layout', newLayout);
 
 

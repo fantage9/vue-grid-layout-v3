@@ -242,7 +242,10 @@ const resizableHandleClass = computed(() => {
 
 defineExpose({
   calcXY,
+  handleDrag,
   domRef,
+  state,
+  props,
 });
 
 function created() {
@@ -610,6 +613,7 @@ function handleResize(event) {
 }
 
 function handleDrag(event) {
+  // console.log('handleDrag', event.type, event.target, event.target.offsetParent);
   if (props.static) return;
   if (state.isResizing) return;
 

@@ -63,6 +63,7 @@ const config = {
 
     // 增加的规则
     'no-debugger': 2,
+    'linebreak-style': 0,
   },
   ignorePatterns: [
     'coverage/**',
